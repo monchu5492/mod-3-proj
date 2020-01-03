@@ -1,0 +1,6 @@
+<%= flash[:message] %>
+<%= form_for :auth, url: login_path do |f| %>
+<%= f.text_field :name, placeholder: "Name" %><br>
+<%= f.text_field :age, placeholder: "Age "%><br>
+<%= f.submit "Submit"%>
+<%end%>
