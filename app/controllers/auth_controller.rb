@@ -7,7 +7,6 @@ class AuthController < ApplicationController
 
     def verify
         user = User.find_by(name: params[:auth][:name])
-        
         if user
             session[:user_id] = user.id
             redirect_to user_path(user)
@@ -17,8 +16,11 @@ class AuthController < ApplicationController
         end
     end
 
-    
-    
-
-
+    def destroy
+        user = User.find(session[:user_id])  
+        if user   
+        session[:user_id] = nil         
+        redirect_to '/flix' 
+        end
+    end  
 end

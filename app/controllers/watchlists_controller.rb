@@ -1,7 +1,9 @@
 require "byebug"
 class WatchlistsController < ApplicationController
+    before_action :require_login
     before_action :user_wl, only: [:index]
     before_action :find_wl, only: [:show, :edit, :destroy]
+
 
     def index
         

@@ -1,6 +1,6 @@
 require "byebug"
 class UsersController < ApplicationController
-    
+    before_action :require_login, except: [:new, :create]
     def new
         @user = User.new
     end
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(u_params)
         if @user.save
-            redirect_to :flix
+            redirect_to flix_path
             flash[:message] = "Please Login"
             session[:user_id] = @user.id
         else
@@ -51,5 +51,4 @@ class UsersController < ApplicationController
     def u_params
         params.require(:user).permit(:name, :age)
     end
-
 end

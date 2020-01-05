@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   get '/flix', to: "auth#login"
   post '/flix', to: "auth#verify"
-
+  
+  #sdelete '/logout' => 'auth#destroy'
+  get '/logout' => 'auth#destroy'
+  
   delete '/watchlist/:id', to: 'watchlists#destroy', as: 'wachlist'
 
   #get '/signup', to: "users#new"
