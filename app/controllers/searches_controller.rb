@@ -1,7 +1,7 @@
 class SearchesController < ApplicationController
     
     def index
-        @searches = Search.all
+        @projects = Project.search(params[:search])
     end
 
     def new
@@ -11,24 +11,15 @@ class SearchesController < ApplicationController
     def create
         @search = Search.new(s_params)
         if @search.save
-            redirect_to movie_path
-
-
-   
-        # @search = Search.new
-        # if jump = jump_target
-        #   redirect_to jump
-        # else
-        #   @results = Search.for(params[:s_term])
-        # end
-
-
-      
-     
-
+            #search_r = SearchResult.create(search_id: @search.id, movie_id: @)
+            redirect_to search_results_path
+        else
+            render :new
+        end
+    end
     
     def create
-        @search = Search.new(search_params)
+        @search = Search.new(s_params)
         if @search.save
             session[:search_id] = @search.id
             redirect_to :root
@@ -39,9 +30,19 @@ class SearchesController < ApplicationController
     
     private
     
-    def search_params
-        params.require(:search).permit(:s_term, :user_id,)
+    def s_params
+        params.require(:search).permit(:s_term, :user_id, :search)
     end
+
+    # def results
+    #     input = params[:searchinput]
+
+    #     @inresult = Movie.all().where(name: ${input} )
+
+    #     @addresult = Search.all.groupby(size).DESC
+
+
+    # end
 
 
     

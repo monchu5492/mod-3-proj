@@ -1,17 +1,24 @@
+require "byebug"
 class AuthController < ApplicationController
+
     def login
 
     end
 
     def verify
         user = User.find_by(name: params[:auth][:name])
+        
         if user
             session[:user_id] = user.id
-            redirect_to :root
+            redirect_to user_path(user)
         else
-            flash[:message] = "Incorrect Responce"
+            flash[:message] = "User does not exist please sign up"
             render :login
         end
-
     end
+
+    
+    
+
+
 end

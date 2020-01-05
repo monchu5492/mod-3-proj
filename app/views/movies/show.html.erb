@@ -1,5 +1,11 @@
-<h1><%= @movie.title %></h1><br>
-<h3><%= @movie.genre %></h3><br>
-<h3><%= @movie.rating %></h3><br>
-<h3><%= @movie.description %></h3><br>
-<h3><%= @movie.cast %></h3><br>
+<h1><%= @movie.title %></h1><br><br>
+<h3>sGenre</h3>
+<h4><%= @movie.genre %></h4><br>
+<h3><em>Rating</h3>
+<h4><%= @movie.rating %></h4><br>
+<h3>Decription</h3>
+<h4><%= @movie.description %></h4><br>
+<h3>Cast</h3>
+<h4><%= @movie.cast %></h4><br>
+<%= button_to "movies", movies_path, method: :get%><br>
+<%= button_to "Add", {controller: :watchlists, action: :create, watchlist: {movie_id: @movie.id, user_id: session[:user_id]}}%>

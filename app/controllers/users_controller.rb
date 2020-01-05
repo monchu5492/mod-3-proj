@@ -1,3 +1,4 @@
+require "byebug"
 class UsersController < ApplicationController
     
     def new
@@ -7,16 +8,18 @@ class UsersController < ApplicationController
     def create
         @user = User.new(u_params)
         if @user.save
-            #session[:user_id] = @user.id
-            flash[:message] = "Account has been created!"
-            redirect_to login_path
+            redirect_to :flix
+            flash[:message] = "Please Login"
+            session[:user_id] = @user.id
         else
+            flash[:message] = "Invalid input"
             render :new
         end
     end
 
     def show
         @user = User.find(params[:id])
+
     end
 
     def edit
@@ -35,32 +38,18 @@ class UsersController < ApplicationController
 
     def destroy
         @user = User.find(params[:id])
-        @user.delete
         if @user.delete
             flash[:message] = "User has been deleted"
-            redirect_to signup_path
+            redirect_to flix_path
         else
             render :show
         end
     end
-
-
-
 
     private 
 
     def u_params
         params.require(:user).permit(:name, :age)
     end
-
-    # def results
-    #     input = params[:searchinput]
-
-    #     @inresult = Movie.all().where(name: ${input} )
-
-    #     @addresult = Search.all.groupby(size).DESC
-
-
-    # end
 
 end

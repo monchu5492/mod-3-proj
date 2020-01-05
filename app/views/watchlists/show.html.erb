@@ -1,6 +1,9 @@
-<h1><%= @watchlist.movie.title%></h1><br>
-<h3><%= @watchlist.movie.genre%></h3><br>
-<h3><%= @watchlist.movie.rating%></h3><br>
-<h3><%= @watchlist.movie.description%></h3><br>
-<h3><%= @watchlist.movie.cast%></h3>
+
+<h1><%= @watchlist.movie <%></h1>
+<%= form_tag watchlist_path(@watchlist.id), method: "delete" do %>
+  <%= submit_tag "Delete #{@watchlist.movie}" %>
+<% end %>
+
+<%= button_to "watchlist", watchlists_path, method: :get %><br>
+<%= button_to "movies", movies_path, method: :get %><br>
 

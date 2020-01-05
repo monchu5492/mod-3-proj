@@ -1,5 +1,19 @@
-5.times do
-    Movie.create(title: "what", genre: "good", rating: 4, description: "this was good", cast: "this cast")
+require 'faker'
+
+genre = ["horror", "sifi", "romance", "action", "comedy", "thriller"]
+
+def casts
+cast = []
+6.times do
+    cast << Faker::Creature::Animal.name
+    end
+    cast
+end
+
+
+
+15.times do
+    Movie.create(title: Faker::Game.title, genre: genre.sample, rating: rand(1..10), description: Faker::Quotes::Shakespeare.hamlet_quote, cast: casts)
 end
 
 puts "movie sedding success"

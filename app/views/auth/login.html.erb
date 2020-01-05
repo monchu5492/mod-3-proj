@@ -1,6 +1,9 @@
-<%= flash[:message] %>
-<%= form_for :auth, url: login_path do |f| %>
+<h1>Login</h1>
+
+<%= flash[:message] %> 
+<%= form_for :auth, url: flix_path do |f| %>
 <%= f.text_field :name, placeholder: "Name" %><br>
 <%= f.text_field :age, placeholder: "Age "%><br>
 <%= f.submit "Submit"%>
 <%end%>
+<%= button_to "Sign Up", new_user_path, method: :get %>
