@@ -1,4 +1,6 @@
-<h1>Movies</h1><br><br>
+<h1>Movies</h1><br>
+<%= button_to "user", user_path(session[:user_id]), method: :get %><br><br>
+
 <% @movies.each do |movie|%>
 <li>
 <%= link_to movie.title, movie %><br>
